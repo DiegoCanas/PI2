@@ -40,5 +40,18 @@ jobs:
         minikube service pi2-helm-chart --url
         curl $(minikube service pi2-helm-chart --url)
 
+    - name: Install ngrok
+      run: |
+        wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+        unzip ngrok-stable-linux-amd64.zip
+        chmod +x ngrok
+        sudo mv ngrok /usr/local/bin/ngrok
+
+    - name: Expose Service with ngrok
+      run: |
+        export NODE_PORT=$(kubectl get service pi2-helm-chart --output='jsonpath="{.spec.ports[0].nodePort}"')
+        ngrok http $NODE_PORT
+
+
 
 
