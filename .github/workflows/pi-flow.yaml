@@ -29,7 +29,7 @@ jobs:
 
     - name: Check Pod Status
       run: 
-        kubectl get pods
+        kubectl get pods -n github.com/DiegoCanas
    
     - name: Get IP
       run: 
