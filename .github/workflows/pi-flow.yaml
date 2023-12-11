@@ -22,9 +22,6 @@ jobs:
     - name: Start Minikube
       run: minikube start
 
-    - name: Wait for Minikube
-      run: minikube wait --for=condition=Ready pod --all --timeout=300s
-
     - name: Install Helm Chart
       run:
         helm install pi2 helm-chart/   
