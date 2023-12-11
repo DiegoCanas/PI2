@@ -26,10 +26,6 @@ jobs:
     - name: Install Helm Chart
       run:
         helm install pi2 helm-chart/
-
-    - name: Wait for Pod to be Ready
-      run: 
-        kubectl wait --for=condition=Ready pod -l app=pi2-helm-chart --timeout=300s
     
     - name: Check Pod Status
       run: 
