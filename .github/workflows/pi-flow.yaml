@@ -27,9 +27,17 @@ jobs:
       run:
         helm install pi2 helm-chart/
 
+    - name: Wait for Pods to be Ready
+      run: 
+        sleep 100s
+
+    - name: Get Pod Logs
+      run: 
+        kubectl logs <nombre-del-pod> -n <tu-namespace>
+
     - name: Check Pod Status
       run: 
-        kubectl get pods -n github.com/DiegoCC
+        kubectl get pods
    
     - name: Get IP
       run: 
