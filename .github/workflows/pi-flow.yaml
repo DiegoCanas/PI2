@@ -27,13 +27,6 @@ jobs:
       run:
         helm install pi2 helm-chart/
 
-    - name: Get pod name
-      run: kubectl get pods pi2-helm-chart -o jsonpath='{.items[0].metadata.name}'
-      register: POD_NAME
-
-    - name: Wait for pod to be ready 
-      run: until kubectl get pods {{POD_NAME}} -o jsonpath='{.status.ready}' | grep true; do sleep 1; done
-
     - name: Check Pod Status
       run: 
         kubectl get pods
