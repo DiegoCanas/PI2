@@ -18,6 +18,12 @@ jobs:
         echo "${{ secrets.DOCKERPW }}" | docker login -u "diegocanas" --password-stdin
         docker build -t diegocanas/pi2 .
         docker push diegocanas/pi2:latest
+    
+    - name: Start Minikube
+      run: minikube start
+
+    - name: Wait for Minikube
+      run: minikube wait --for=condition=Ready pod --all --timeout=300s
 
     - name: Install Helm Chart
       run:
