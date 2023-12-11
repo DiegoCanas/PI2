@@ -13,8 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build & Push Image
+    - name: Build & Push Image Docker
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "diegocanas" --password-stdin
         docker build -t diegocanas/pi2 .
         docker push diegocanas/pi2:latest
+
+    - name: Install Helm Chart
+      run:
+        helm install pi2 helm-chart/   
