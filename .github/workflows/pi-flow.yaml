@@ -37,4 +37,5 @@ jobs:
    
     - name: Get IP
       run: 
-        minikube service pi2-helm-chart
+        export BROWSER=/usr/bin/google-chrome
+        minikube service pi2-helm-chart 
