@@ -31,10 +31,6 @@ jobs:
       run: 
         sleep 100s
 
-    - name: Get Pod Logs
-      run: 
-        kubectl logs <nombre-del-pod> -n <tu-namespace>
-
     - name: Check Pod Status
       run: 
         kubectl get pods
