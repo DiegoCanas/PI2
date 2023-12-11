@@ -20,8 +20,13 @@ jobs:
         docker push diegocanas/pi2:latest
     
     - name: Start Minikube
-      run: minikube start
+      run: 
+        minikube start
 
     - name: Install Helm Chart
       run:
         helm install pi2 helm-chart/   
+    
+    - name: Get IP
+      run: 
+        minikube service pi2-helm-chart
