@@ -26,7 +26,10 @@ jobs:
     - name: Install Helm Chart
       run:
         helm install pi2 helm-chart/
-    
+
+    - name: Wait for pod to be ready 
+      run: until kubectl get pods pi2-helm-chart -o jsonpath='{.status.ready}' | grep true; do sleep 1; done
+
     - name: Check Pod Status
       run: 
         kubectl get pods
