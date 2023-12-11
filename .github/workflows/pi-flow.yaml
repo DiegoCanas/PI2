@@ -38,5 +38,5 @@ jobs:
    
     - name: Get IP
       run: 
-        minikube service pi2-helm-chart --url-scheme=http --open-in-chrome
+        minikube service pi2-helm-chart
 
