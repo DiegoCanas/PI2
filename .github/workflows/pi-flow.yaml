@@ -13,7 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-ssh@v1
     - name: Build & Push Image Docker
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "diegocanas" --password-stdin
@@ -38,5 +37,5 @@ jobs:
    
     - name: Get IP
       run: 
-        minikube service pi2-helm-chart
+        minikube service pi2-helm-chart --url
 
