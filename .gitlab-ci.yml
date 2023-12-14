@@ -16,7 +16,7 @@ test:
   stage: test
   script:
     - echo "Running tests"
-    - npm intall
+    - npm install
     - npm test
 
 docker_build:
