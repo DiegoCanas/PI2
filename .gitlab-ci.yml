@@ -39,7 +39,7 @@ helm_deploy:
   stage: deploy
   script:
     - service docker start
-    - minikube start --driver=docker
+    - minikube start 
     - helm install pi2 helm-chart/
     - sleep 100s
     - kubectl get pods
