@@ -1,4 +1,6 @@
+image: node:lastest
 stages:
+  - test
   - build
   - deploy
 
@@ -6,14 +8,26 @@ variables:
   DOCKER_IMAGE_NAME: diegocanas/pi2
 
 before_script:
-  - echo "$DOCKER_ID" | docker login -u "diegocanas" --password-stdin
   - apt-get update -qy
   - apt-get install -y docker.io
   - export PATH=$PATH:/usr/bin/docker
-  
-build:
-  stage: build
+
+test:
+  stage: test
   script:
+    - echo "Running tests"
+    - npm intall
+    - npm test
+
+docker_build:
+  image: docker:24.0.5
+  services:
+  - docker:24.0.5-dind
+  stage: build
+  before_script:
+    - echo "$DOCKER_ID" | docker login $DOCKER_REGISTRY --username diegocanas --password-stdin  
+  script:
+    - echo "Building Docker image..."
     - docker build -t $DOCKER_IMAGE_NAME .
     - docker push $DOCKER_IMAGE_NAME:latest
 
