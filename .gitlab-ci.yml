@@ -14,7 +14,7 @@ before_script:
   - apt-get update -qy
   - apt-get install -y curl
   - curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-  - sudo dpkg -i minikube_latest_amd64.deb
+  - dpkg -i minikube_latest_amd64.deb
   - export PATH=$PATH:/usr/local/bin
 
 test:
