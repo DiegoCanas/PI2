@@ -7,6 +7,8 @@ variables:
 
 before_script:
   - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - apt-get update -qy
+  - apt-get install -y docker.io
 
 build:
   stage: build
