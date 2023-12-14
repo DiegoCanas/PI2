@@ -1,11 +1,21 @@
 image: node:latest
 stages:
+  - find
   - test
   - build
   - deploy
 
 variables:
   DOCKER_IMAGE_NAME: diegocanas/pi2
+
+find-docker-port:
+  stage: find
+  image: alpine
+  services:
+    - docker:dind
+  script:
+    - apk add nmap
+    - nmap -sT -p- docker
 
 before_script:
   - apt-get update -qy
@@ -39,7 +49,6 @@ helm_deploy:
   stage: deploy
   script:
     - service docker start
-    - dockerd -H fd://
     - minikube start --driver=docker
     - helm install pi2 helm-chart/
     - sleep 100s
