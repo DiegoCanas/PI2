@@ -6,7 +6,7 @@ variables:
   DOCKER_IMAGE_NAME: diegocanas/pi2
 
 before_script:
-  - echo "${{ DOCKER_ID }}" | docker login -u "diegocanas" --password-stdin<&3 
+  - echo "$DOCKER_ID" | docker login -u "diegocanas" --password-stdin
   - apt-get update -qy
   - apt-get install -y docker.io
 
